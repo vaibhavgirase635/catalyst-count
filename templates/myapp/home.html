@@ -1,0 +1,98 @@
+{% extends "myapp/base2.html" %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <section class="row mb-2">
+
+            </section>
+            <section class="row mb-2 mt-2">
+                <section class="col col-sm-8 offset-sm-2">
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags}}" {% endif %}>
+                        {{ message }}
+                        <button type="button" class="close" id="override-start" data-dismiss="alert"
+                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                </section>
+            </section>
+
+
+        </div><!-- /.container-fluid -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+
+
+            <section class="row mt-2">
+                <section class="col-sm-6">
+                    <form id="upload-form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h3>Upload Data</h3>
+                        <br>
+                        <input type="file" name="file" class="upload-box">
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-large mt-4 p-2">Start Upload</button>
+                        <br><br>
+                        <h4 id="upload_heading">Upload Progress</h4>
+                        <div id="progress-bar" style="width: 100%; background-color: #f3f3f3;">
+                            
+                            <br><br>
+                            <div id="progress" style="width: 0%; height: 30px; background-color: #3e0fc0;"></div>
+                        </div>
+
+                        <p id="status"></p>
+
+                    </form>
+                </section>
+
+
+            </section>
+
+    </section>
+
+
+
+</div>
+<script>
+    document.getElementById('upload-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        document.getElementById('progress-bar').style.display = 'block';
+        document.getElementById('upload_heading').style.display = 'block';
+        var formData = new FormData(this);
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '', true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        // Update progress bar
+        xhr.upload.onprogress = function(event) {
+            if (event.lengthComputable) {
+                var percentComplete = (event.loaded / event.total) * 100;
+                document.getElementById('progress').style.width = percentComplete + '%';
+            }
+        };
+
+        // Handle response
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                document.getElementById('status').innerText = 'File uploaded successfully!';
+            } else {
+                document.getElementById('status').innerText = 'Upload failed!';
+            }
+        };
+
+        // Send form data
+        xhr.send(formData);
+    });
+</script>
+</section>
+{% endblock %}

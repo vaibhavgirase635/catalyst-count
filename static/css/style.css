@@ -1,0 +1,42 @@
+body{
+    /* background-color: black; */
+}
+
+.upload-box{
+    font-size: 16px;
+    box-shadow: 5px 5px 10px black;
+    width: 400px;
+
+}
+::-webkit-file-upload-button{
+    color:white;
+    background-color: rgb(26, 84, 172);
+    padding: 10px;
+    border: none;
+}
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 15px;
+    }
+   #founded{
+    margin-top: 3px;
+   }
+   #city{
+    margin-top: 3px;
+   }
+   #country{
+    margin-top: 3px;
+   }
+   #employee_from{
+    margin-top: 3px;
+   }
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+  
+    .alert {
+        font-size: 14px;
+    }
+  }
+  

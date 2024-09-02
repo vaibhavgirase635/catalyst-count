@@ -1,0 +1,11 @@
+FROM python:latest
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ADD company_count/settings.py /
+WORKDIR /catalyst_count
+COPY requirements.txt /catalyst_count/
+RUN pip install django
+RUN pip install --default-timeout=100 -r requirements.txt
+COPY . /catalyst_count/
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+

@@ -1,0 +1,102 @@
+{% extends 'myapp/base2.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <section class="row mb-2">
+
+            </section>
+            <section class="row mb-2 mt-2">
+                <section class="col col-sm-8 offset-sm-2">
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags}}" {% endif %}>
+                        {{ message }}
+                        <button type="button" class="close" id="override-start" data-dismiss="alert"
+                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+    
+
+                </section>
+            </section>
+            <div class="row mb-2">
+                <div class="col-sm-2 profile_title">
+                    <div style="display: flex; gap: 4rem;">
+                        <h1 class="m-0">{{title}}</h1>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-end">
+                        
+                        <li class="breadcrumb-item"><a href="{% url 'add_user' %}" id="stylebtn"
+                                class="btn btn-primary">
+                                Add User
+                            </a></li>
+                    
+                    </ol>
+                </div>
+
+            </div><!-- /.row -->
+
+        </div><!-- /.container-fluid -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col"> Status</th>
+                            <th scope="col">ACTION</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for i in users %}
+                          <tr>
+                            {% if i.first_name and i.last_name %}
+                            <td>
+                                {{i.first_name}} {{i.last_name}} 
+                            </td>
+                            {% else %}
+                            <td>{{i.username}}</td>
+                            {% endif %}
+                            <td>{{i.email}}</td>
+                            {% if i.is_active %}
+                            <td>Active</td>
+                            {% endif %}
+                            
+                            <td>
+                                
+                                <a href="{% url 'delete_user' i.id %}" class="text-center"><i class="fa-solid fa-circle-xmark"></i></a>
+                                
+                            </div>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+</div>
+</section>
+
+</div>
+{% endblock %}

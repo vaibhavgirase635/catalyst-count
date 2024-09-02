@@ -1,0 +1,86 @@
+{% extends "myapp/base2.html" %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <section class="row mb-2">
+            </section>
+            <section class="row mb-2 mt-2">
+                <section class="col-sm-8 offset-sm-2">
+                    <p class="alert alert-success" id="msg">
+                        <button type="button" class="close" id="override-start" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </p>
+                </section>
+            </section>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <form id="upload-form" action="/query" enctype="multipart/form-data">
+                <section class="row mt-4">
+                    <h3>Query Builder</h3>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <select name="industry" id="industry" class="form-control">
+                            <option value="" disabled selected>Industry</option>
+                            {% for industry in industrys %}
+                            <option value="{{industry}}">{{industry}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <select name="founded" id="founded" class="form-control">
+                            <option value="" disabled selected>Year Founded</option>
+                            {% for year in years %}
+                            <option value="{{year}}">{{year}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <input type="text" name="city" id="city" class="form-control" placeholder="Enter city">
+                    </div>
+                </section>
+                <section class="row mt-4">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <input type="text" name="state" id="state" class="form-control" placeholder="Enter state">
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <select name="country" id="country" class="form-control">
+                            <option value="" disabled selected>Country</option>
+                            {% for country in countrys %}
+                            <option value="{{country}}">{{country}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <select name="employee_from" id="employee_from" class="form-control">
+                            <option value="" disabled selected>Employee From</option>
+                            {% for quantity in employee_from %}
+                            <option value="{{quantity}}">{{quantity}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </section>
+                <section class="row mt-4">
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <select name="employee_to" id="employee_to" class="form-control">
+                            <option value="" disabled selected>Employee To</option>
+                            {% for quantity in employee_to %}
+                            <option value="{{quantity}}">{{quantity}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </section>
+                <section class="row mt-4">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary mt-4">Submit Query</button>
+                        <button type="reset" class="btn btn-secondary mt-4">Reset</button>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </section>
+</div>
+{% endblock %}

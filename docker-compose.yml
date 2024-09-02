@@ -1,0 +1,57 @@
+services:
+  postgres_db:
+
+    container_name: postgrey_conn
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=vaibhav
+      - POSTGRES_PASSWORD=vaibhav123
+      - POSTGRES_DB=mydb
+      - POSTGRES_HOST_AUTH_METHOD=trust"
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+     
+  django_project:
+    container_name: catalyst_count
+    image: catalyst_img
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    environment:
+      - CELERY_BROKER=redis://redis:6379/0
+      - DJANGO_ALLOWD_HOSTS=localhost 127.0.0.1
+    env_file:
+      - .env
+    volumes:
+      - .:/catalyst_count
+      - ./media:/catalyst_count/media/
+    command: bash -c "python manage.py makemigrations && 
+            python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - postgres_db
+      - redis
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - .:/catalyst_count
+
+  celery:
+    image: catalyst_img
+    env_file:
+      - .env
+    
+    depends_on:
+      - postgres_db
+      - redis
+    command: celery -A company_count worker --loglevel=info
+
+volumes:
+  postgres_data: 
