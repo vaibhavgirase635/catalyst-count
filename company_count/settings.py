@@ -90,12 +90,12 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
+        'NAME': 'your database name',
         # 'HOST':'127.0.0.1',
         'HOST':'postgres_db',
         'PORT':'5432',
-        'USER': 'vaibhav',
-        'PASSWORD': 'vaibhav123',
+        'USER': 'your database user',
+        'PASSWORD': 'your database password',
     }
 
     }

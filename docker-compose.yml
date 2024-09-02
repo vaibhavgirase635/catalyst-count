@@ -7,9 +7,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=vaibhav
-      - POSTGRES_PASSWORD=vaibhav123
-      - POSTGRES_DB=mydb
+      - POSTGRES_USER=your database user
+      - POSTGRES_PASSWORD=your database password
+      - POSTGRES_DB=your database name
       - POSTGRES_HOST_AUTH_METHOD=trust"
     volumes:
       - ./data/postgresql:/var/lib/postgresql/data
