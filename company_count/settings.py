@@ -90,12 +90,12 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your database name',
-        # 'HOST':'127.0.0.1',
-        'HOST':'postgres_db',
+        'NAME': 'mydb',
+        'HOST':'127.0.0.1',
+        #'HOST':'postgres_db',
         'PORT':'5432',
-        'USER': 'your database user',
-        'PASSWORD': 'your database password',
+        'USER': 'vaibhav',
+        'PASSWORD': 'vaibhav123',
     }
 
     }
@@ -156,8 +156,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #CELERY SETTINGS
 CELERY_TIMEZONE = "Asia/Kolkata"
-# CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+#CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
