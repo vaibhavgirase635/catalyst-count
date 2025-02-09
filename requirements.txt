@@ -54,7 +54,7 @@ platformdirs==4.2.2
 plumbum==1.8.3
 ply==3.11
 prompt_toolkit==3.0.47
-psycopg2==2.9.9
+psycopg2-binary==2.9.9
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
 pycparser==2.22
