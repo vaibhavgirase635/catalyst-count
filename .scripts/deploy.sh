@@ -26,7 +26,8 @@ deactivate
 echo "Virtual env 'env' Deactivated !"
 
 # Reloading Application So New Changes could reflect on website
-pushd catalyst-count
+pushd /var/www/html/catalyst-count
+
 touch wsgi.py
 popd
 
