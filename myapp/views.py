@@ -68,10 +68,7 @@ def home(request):
         file = request.FILES.get('file')
         if file:
             print(file)
-
             file_path = handle_uploaded_file(file)
-            print(file_path)
-                # Schedule the background task
             id=request.user.id
             process_csv_file.delay(file_path,id)
             

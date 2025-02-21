@@ -4,14 +4,14 @@ import re
 
 class Company(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
-    domain=models.CharField(max_length=100)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    domain=models.CharField(max_length=255)
     year_founded = models.FloatField()
-    industry = models.CharField(max_length=200)
+    industry = models.CharField(max_length=255)
     size_range = models.CharField(max_length=50, blank=True, null=True)
     
     locality=models.TextField(null=True, blank=True)
-    country = models.CharField(max_length=100, null=True, blank=True)
+    country = models.CharField(max_length=255, null=True, blank=True)
     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
     current_employee_estimate = models.IntegerField(null=True, blank=True)
     total_employee_estimate = models.IntegerField(null=True, blank=True)
